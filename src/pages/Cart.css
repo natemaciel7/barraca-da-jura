@@ -1,0 +1,83 @@
+.carrinho {
+  padding: 20px;
+}
+
+.carrinho h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.item-carrinho {
+  display: flex;
+  margin-bottom: 16px;
+  background-color: #fff7f0;
+  border: 1px solid #e0c3a0;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.item-carrinho img {
+  width: 100px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 12px;
+}
+
+.item-carrinho .info {
+  flex: 1;
+}
+
+.item-carrinho h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.item-carrinho button {
+  margin-top: 8px;
+  background-color: #b33e3e;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.total {
+  margin-top: 24px;
+  font-size: 18px;
+  text-align: right;
+}
+
+.fechar-pedido {
+  margin-top: 12px;
+  padding: 10px 20px;
+  background-color: #6f4e37;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.quantidade {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.quantidade button {
+  background-color: #6f4e37;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.quantidade span {
+  min-width: 20px;
+  text-align: center;
+  font-weight: bold;
+}
