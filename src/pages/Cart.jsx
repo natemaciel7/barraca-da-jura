@@ -52,14 +52,10 @@ export default function Cart() {
       setCarrinho([]); // limpa o carrinho após pedido
       navigate("/"); // redireciona para home
     } catch (err) {
-      console.error(
-        "Erro ao enviar pedido:",
-        err.response?.data || err.message
-      );
-      alert(
-        "Erro ao enviar pedido: " +
-          (err.response?.data || "Tente novamente mais tarde.")
-      );
+      console.error("Erro ao enviar pedido:", err);
+      const mensagem =
+        err?.response?.data || err?.message || "Erro desconhecido.";
+      alert("Erro ao enviar pedido: " + mensagem);
     }
   }
 
