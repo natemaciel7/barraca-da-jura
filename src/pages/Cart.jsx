@@ -17,6 +17,19 @@ export default function Cart() {
     0
   );
 
+  function gerarMensagemWhatsApp(pedido) {
+    let mensagem = `Olá, sou o cliente ${pedido.cliente}! Quero fazer um pedido:\n\n`;
+
+    pedido.itens.forEach((item) => {
+      const subtotal = (item.preco * item.quantidade).toFixed(2);
+      mensagem += `- ${item.nome} (${item.quantidade}x) - R$${subtotal}\n`;
+    });
+
+    mensagem += `\nTotal: R$${pedido.total.toFixed(2)}\n`;
+
+    return encodeURIComponent(mensagem);
+  }
+
   async function finalizarPedido() {
     if (!usuario) {
       alert("Você precisa estar logado para finalizar o pedido.");
@@ -48,21 +61,25 @@ export default function Cart() {
         },
       });
 
-      alert("Pedido enviado com sucesso!");
-      setCarrinho([]); // limpa o carrinho após pedido
-      navigate("/"); // redireciona para home
+      const mensagem = gerarMensagemWhatsApp(pedido);
+      const numero = "5549991337443";
+      const linkWpp = `https://wa.me/${numero}?text=${mensagem}`;
+
+      setCarrinho([]);
+      window.location.href = linkWpp;
     } catch (err) {
       console.error("Erro ao enviar pedido:", err);
-    
+
       const mensagem =
         err?.response?.data?.message ||
         err?.response?.data ||
         err?.message ||
         "Erro desconhecido ao enviar pedido.";
-    
+
       alert("Erro ao enviar pedido: " + mensagem);
     }
-    
+  }
+
   return (
     <div className="carrinho">
       <h2>Seu Carrinho</h2>
