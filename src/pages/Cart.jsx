@@ -53,12 +53,16 @@ export default function Cart() {
       navigate("/"); // redireciona para home
     } catch (err) {
       console.error("Erro ao enviar pedido:", err);
+    
       const mensagem =
-        err?.response?.data || err?.message || "Erro desconhecido.";
+        err?.response?.data?.message ||
+        err?.response?.data ||
+        err?.message ||
+        "Erro desconhecido ao enviar pedido.";
+    
       alert("Erro ao enviar pedido: " + mensagem);
     }
-  }
-
+    
   return (
     <div className="carrinho">
       <h2>Seu Carrinho</h2>
