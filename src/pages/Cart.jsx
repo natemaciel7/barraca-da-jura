@@ -28,6 +28,12 @@ export default function Cart() {
       return;
     }
 
+    const token = localStorage.getItem("tokenJura");
+    if (!token) {
+      alert("Token não encontrado. Faça login novamente.");
+      return;
+    }
+
     const pedido = {
       cliente: usuario.email.split("@")[0],
       email: usuario.email,
@@ -36,12 +42,24 @@ export default function Cart() {
     };
 
     try {
-      await api.post("/pedidos", pedido);
+      await api.post("/pedidos", pedido, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       alert("Pedido enviado com sucesso!");
       setCarrinho([]); // limpa o carrinho após pedido
       navigate("/"); // redireciona para home
     } catch (err) {
-      alert("Erro ao enviar pedido.");
+      console.error(
+        "Erro ao enviar pedido:",
+        err.response?.data || err.message
+      );
+      alert(
+        "Erro ao enviar pedido: " +
+          (err.response?.data || "Tente novamente mais tarde.")
+      );
     }
   }
 
